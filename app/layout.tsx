@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-900">
-        <main className="px-4 md:px-6 prose prose-xl prose-slate prose-invert mx-auto">
+        <main className="px-4 md:px-6 prose prose-xl prose-slate prose-invert mx-auto my-10">
           {children}
         </main>
       </body>
