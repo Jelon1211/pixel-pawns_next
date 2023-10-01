@@ -1,5 +1,5 @@
 import axios from "axios";
-import { User } from "../_types/user";
+import { User } from "../_types/login";
 
 export default class LoginService {
   static async getUser(id: string): Promise<User> {
