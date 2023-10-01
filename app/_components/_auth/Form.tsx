@@ -1,6 +1,5 @@
 "use client";
-import { ChangeEvent, useState } from "react";
-import "../../../public/assets/css/main.css";
+import { ChangeEvent, useEffect, useState } from "react";
 import SubmitButton from "./submitButton";
 import LoginService from "@/app/_services/loginService";
 
@@ -31,9 +30,11 @@ const Form = () => {
       console.error(error);
     }
   };
+
   return (
     <form
       className="text-center py-3 px-8 m-10 rounded-lg wd-fit bg-slate-700 shadow-lg shadow-indigo-500/40 work-request"
+      style={{ width: "fit-content" }}
       onSubmit={handleGetUser}
     >
       <h2 className="text-4xl py-5 text-white">Enter your credentials</h2>
