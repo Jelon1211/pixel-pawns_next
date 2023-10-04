@@ -1,9 +1,11 @@
 "use client";
 import { ChangeEvent, useEffect, useState } from "react";
-import SubmitButton from "./submitButton";
-import InputField from "../_UI/InputField";
+import SubmitButton from "../submitButton";
+import InputField from "../../_UI/InputField";
 import useLogin from "@/app/_hooks/useLogin";
 import { InputValues } from "@/app/_types/login";
+import Link from "next/link";
+import SmallLink from "../_register/RegisterButton";
 
 const LoginForm = () => {
   const [inputValues, setInputValues] = useState<InputValues>({
@@ -16,7 +18,6 @@ const LoginForm = () => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputValues((prevState) => ({ ...prevState, [name]: value }));
-    console.log(inputValues);
   };
 
   return (
@@ -46,7 +47,10 @@ const LoginForm = () => {
           />
         </div>
       </div>
-      <SubmitButton />
+      <SubmitButton placeHolderValue="Login!" />
+      <Link href="/auth/register">
+        <SmallLink placeHolderValue="Register" />
+      </Link>
     </form>
   );
 };

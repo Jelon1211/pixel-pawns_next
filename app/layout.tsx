@@ -1,3 +1,4 @@
+import DeviceScreen from "./_components/_global/DeviceScreen";
 import "./globals.css";
 import type { Metadata } from "next";
 
@@ -16,7 +17,8 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-slate-900">
         <main className="px-4 md:px-6 prose prose-xl prose-slate prose-invert mx-auto my-10">
-          {children}
+          <div className="main-content">{children}</div>
+          <DeviceScreen />
         </main>
       </body>
     </html>

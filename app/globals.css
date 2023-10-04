@@ -9,3 +9,16 @@
 .Form {
   @apply text-center py-3 px-8 m-10 rounded-lg bg-slate-700 shadow-lg shadow-indigo-500/40;
 }
+
+.device-notification {
+  display: none;
+}
+
+@media (max-width: 479px) {
+  .device-notification {
+    display: block;
+  }
+  .main-content {
+    display: none;
+  }
+}

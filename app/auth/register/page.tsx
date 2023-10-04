@@ -1,4 +1,4 @@
-import Form from "@/app/_components/_auth/LoginForm";
+import RegisterForm from "@/app/_components/_auth/_register/RegisterForm";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,7 +15,7 @@ const Page = () => {
             priority
           />
         </Link>
-        <Form />
+        <RegisterForm />
       </div>
     </>
   );

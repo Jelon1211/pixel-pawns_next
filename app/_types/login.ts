@@ -13,6 +13,7 @@ export interface ICreateUser {
 }
 
 export interface InputValues {
+  name?: string;
   email: string;
   password: string;
 }
@@ -22,4 +23,8 @@ export interface IInputField {
   type?: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface IButton {
+  placeHolderValue: string;
 }

@@ -1,7 +1,7 @@
-"use client";
+import { IButton } from "@/app/_types/login";
 
-const SubmitButton = () => {
-  return <input type="submit" value="Login!" className="my-6" />;
+const SubmitButton = ({ placeHolderValue }: IButton) => {
+  return <input type="submit" value={placeHolderValue} className="my-6" />;
 };
 
 export default SubmitButton;
