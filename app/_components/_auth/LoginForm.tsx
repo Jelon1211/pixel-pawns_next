@@ -5,7 +5,7 @@ import InputField from "../_UI/InputField";
 import useLogin from "@/app/_hooks/useLogin";
 import { InputValues } from "@/app/_types/login";
 
-const Form = () => {
+const LoginForm = () => {
   const [inputValues, setInputValues] = useState<InputValues>({
     email: "",
     password: "",
@@ -51,4 +51,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default LoginForm;

@@ -1,8 +1,15 @@
 import { ChangeEvent } from "react";
 
-export interface User {
+export interface IGetUser {
+  id: string;
+  email: string;
+}
+
+export interface ICreateUser {
   id: string;
   name: string;
+  email: string;
+  password: string;
 }
 
 export interface InputValues {
