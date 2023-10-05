@@ -16,7 +16,7 @@
 
 @media (max-width: 479px) {
   .device-notification {
-    display: block;
+    display: flex;
   }
   .main-content {
     display: none;

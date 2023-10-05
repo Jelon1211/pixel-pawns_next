@@ -1,24 +1,20 @@
 "use client";
+import { INavLink } from "@/app/_types/sidebar";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 
-interface INavLink {
-  label: string;
-  path: string;
-  targetSegment: string;
-}
-
-export default function NavLink({ label, path, targetSegment }: INavLink) {
+const NavLink = ({ label, path, targetSegment }: INavLink) => {
   const activeSegment = useSelectedLayoutSegment();
+  const activeClass =
+    activeSegment === targetSegment
+      ? "font-bold drop-shadow text-white"
+      : "text-slate-400";
+
   return (
-    <Link
-      style={{
-        textDecoration: activeSegment === targetSegment ? "underline" : "none",
-        padding: "0.5rem",
-      }}
-      href={path}
-    >
+    <Link className={`${activeClass}`} href={path}>
       {label}
     </Link>
   );
-}
+};
+
+export default NavLink;

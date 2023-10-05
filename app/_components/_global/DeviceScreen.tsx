@@ -2,8 +2,11 @@ import Image from "next/image";
 
 const DeviceScreen = () => {
   return (
-    <div className="device-notification">
-      <a className="device-notification--logo" href="/auth/login">
+    <div className="device-notification flex-col items-center justify-center text-white text-center	">
+      <a
+        className="device-notification--logo flex flex-col items-center justify-center"
+        href="/auth/login"
+      >
         <Image
           src="/assets/img/logo.png"
           width={50}
