@@ -17,7 +17,7 @@ export default class LoginService {
     userData: Partial<ICreateUser>
   ): Promise<ICreateUser> {
     try {
-      const response: AxiosResponse<ICreateUser> = await axios.post(
+      const response: AxiosResponse<ICreateUser> = await `axios`.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/user`,
         userData
       );

@@ -1,5 +1,6 @@
 import CharacterTile from "@/app/_components/_dashboard/CharacterTile";
 import { getCharacters } from "@/app/_services/getCharacters";
+import { CharacterTileProps } from "@/app/_types/game";
 
 const Page = async () => {
   const characters = await getCharacters();
@@ -8,13 +9,15 @@ const Page = async () => {
     <div className="p-4 min-h-screen">
       <div className="container mx-auto">
         <div className="flex flex-wrap">
-          {characters.map((character: any) => (
+          {characters.map((character, index) => (
             <CharacterTile
               key={character.id}
               thumbnail={character.thumbnail}
               name={character.name}
               description={""}
               isDead={false}
+              index={index}
+              id={character.id}
             />
           ))}
         </div>
