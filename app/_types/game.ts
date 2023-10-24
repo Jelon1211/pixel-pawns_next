@@ -6,3 +6,10 @@ export interface CharacterTileProps {
   description: string;
   isDead: boolean;
 }
+
+export interface IInputCreateValues {
+  name: string;
+  race: string;
+  weapon: string;
+  attributes: string;
+}
