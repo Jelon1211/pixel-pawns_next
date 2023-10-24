@@ -6,6 +6,7 @@ import SubmitButton from "../_auth/SubmitButton";
 import { IInputCreateValues } from "@/app/_types/game";
 import ProgressBar from "./ProgressBar";
 import { CreateCharacterSchema } from "@/app/_schemas/createCharacter";
+import { useRouter } from "next/navigation";
 
 const CreateForm = () => {
   const [inputValues, setInputValues] = useState<IInputCreateValues>({
@@ -16,8 +17,9 @@ const CreateForm = () => {
   });
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const [errors, setErrors] = useState({ name: "" });
-
   const [progress, setProgress] = useState<number>(0);
+
+  const router = useRouter();
 
   const validateInput = async (name: string, value: string) => {
     try {
@@ -57,6 +59,7 @@ const CreateForm = () => {
       setProgress((prevProgress) => {
         if (prevProgress >= 100) {
           clearInterval(progressInterval);
+          router.push(`/game/created?name=${inputValues.name}`);
           return 100;
         }
         return prevProgress + 10;
