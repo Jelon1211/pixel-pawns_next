@@ -22,6 +22,9 @@ export interface IInputField {
   name: string;
   type?: string;
   value: string;
+  divClassName?: string;
+  inputClassName?: string;
+  labelClassName?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 

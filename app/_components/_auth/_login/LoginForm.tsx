@@ -1,6 +1,6 @@
 "use client";
 import { ChangeEvent, useEffect, useState } from "react";
-import SubmitButton from "../submitButton";
+import SubmitButton from "../SubmitButton";
 import InputField from "../../_UI/InputField";
 import useLogin from "@/app/_hooks/useLogin";
 import { InputValues } from "@/app/_types/login";

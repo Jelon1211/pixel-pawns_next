@@ -1,22 +1,26 @@
 "use client";
 import { IInputField } from "@/app/_types/login";
-import { ChangeEvent } from "react";
 
 const InputField: React.FC<IInputField> = ({
   name,
   type = "text",
   value,
   onChange,
+  divClassName = " ",
+  inputClassName = " ",
+  labelClassName = " ",
 }) => (
-  <div className="">
+  <div className={divClassName}>
     <input
-      className={value ? "has-value" : ""}
+      className={`${value ? "has-value" : ""} ${inputClassName}`}
       name={name}
       type={type}
       value={value}
       onChange={onChange}
     />
-    <label htmlFor={name}>{name.charAt(0).toUpperCase() + name.slice(1)}</label>
+    <label htmlFor={name} className={labelClassName}>
+      {name.charAt(0).toUpperCase() + name.slice(1)}
+    </label>
   </div>
 );
 

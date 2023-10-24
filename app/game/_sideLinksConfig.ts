@@ -1,7 +1,7 @@
 export const sideLinks = [
   {
     label: "Play",
-    path: "/game/play", 
+    path: "/game/play",
     id: 0,
     targetSegment: "play",
   },
@@ -26,7 +26,7 @@ export const sideLinks = [
   {
     label: "Logout",
     path: "/auth/logout",
-    id: 3,
+    id: 4,
     targetSegment: "logout",
   },
 ];

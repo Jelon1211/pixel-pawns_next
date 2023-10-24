@@ -1,4 +1,5 @@
 import Sidebar from "../_components/_UI/_sidebar/Sidebar";
+import "../../public/assets/css/main.css";
 
 export default function RootLayout({
   children,
