@@ -59,7 +59,7 @@ const CreateForm = () => {
       setProgress((prevProgress) => {
         if (prevProgress >= 100) {
           clearInterval(progressInterval);
-          router.push(`/game/created?name=${inputValues.name}`);
+          //   router.push(`/game/created?name=${inputValues.name}`);
           return 100;
         }
         return prevProgress + 10;

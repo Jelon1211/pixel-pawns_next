@@ -11,7 +11,6 @@ const Page = () => {
 
   useEffect(() => {
     const search = searchParams.get("name");
-    console.log(search);
     if (!search) {
       setIsNewCharacter(false);
     }
