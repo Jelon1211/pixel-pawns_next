@@ -1,6 +1,6 @@
 # Work in progress
 
-Features yet to be implemented before release **15/37**
+Features yet to be implemented before release **20/37**
 
 ## Last update
 
