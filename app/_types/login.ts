@@ -6,14 +6,7 @@ export interface IGetUser {
 }
 
 export interface ICreateUser {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-}
-
-export interface InputValues {
-  name?: string;
+  name: string | undefined;
   email: string;
   password: string;
 }

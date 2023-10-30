@@ -4,19 +4,19 @@ import * as Yup from "yup";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import SubmitButton from "../SubmitButton";
 import InputField from "../../_UI/InputField";
-import { InputValues } from "@/app/_types/login";
+import { ICreateUser, InputValues } from "@/app/_types/login";
 import { RegisterSchema } from "@/app/_schemas/register";
 import useRegister from "@/app/_hooks/useRegister";
 import Link from "next/link";
 import SmallLink from "./RegisterButton";
 
 const RegisterForm = () => {
-  const [inputValues, setInputValues] = useState<InputValues>({
+  const [inputValues, setInputValues] = useState<ICreateUser>({
     name: "",
     email: "",
     password: "",
   });
-  const [errors, setErrors] = useState<InputValues>({
+  const [errors, setErrors] = useState<ICreateUser>({
     name: "",
     email: "",
     password: "",
@@ -45,7 +45,7 @@ const RegisterForm = () => {
 
     try {
       await RegisterSchema.validate(inputValues);
-      handleRegisterUser("test");
+      handleRegisterUser(inputValues);
     } catch (error: any) {
       if (error instanceof Yup.ValidationError) {
         setErrors((prev) => ({ ...prev, [error.path!]: error.message }));

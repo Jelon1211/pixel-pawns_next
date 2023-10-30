@@ -1,12 +1,11 @@
-import { FormEvent } from "react";
 import LoginService from "../_services/loginService";
+import { ICreateUser } from "../_types/login";
 
-const useLogin = () => {
-  const handleRegisterUser = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+const useRegister = () => {
+  const handleRegisterUser = async (userData: ICreateUser) => {
     try {
-      const userData = await LoginService.createUser();
-      console.log(userData);
+      const result = await LoginService.createUser(userData);
+      console.log(result);
     } catch (error) {
       console.error(error);
     }
@@ -15,4 +14,4 @@ const useLogin = () => {
   return { handleRegisterUser };
 };
 
-export default useLogin;
+export default useRegister;

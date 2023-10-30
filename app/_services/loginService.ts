@@ -5,7 +5,7 @@ export default class LoginService {
   static async getUser(id: string): Promise<IGetUser> {
     try {
       const response: AxiosResponse<IGetUser> = await axios.get(
-        `${process.env.SERVER_ADRESS}/api/user/${id}`
+        `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/users/${id}`
       );
       return response.data;
     } catch (error) {
@@ -17,8 +17,8 @@ export default class LoginService {
     userData: Partial<ICreateUser>
   ): Promise<ICreateUser> {
     try {
-      const response: AxiosResponse<ICreateUser> = await `axios`.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/user`,
+      const response: AxiosResponse<ICreateUser> = await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/users`,
         userData
       );
       return response.data;
