@@ -4,11 +4,12 @@ import * as Yup from "yup";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import SubmitButton from "../SubmitButton";
 import InputField from "../../_UI/InputField";
-import { ICreateUser, InputValues } from "@/app/_types/login";
+import { ICreateUser } from "@/app/_types/login";
 import { RegisterSchema } from "@/app/_schemas/register";
 import useRegister from "@/app/_hooks/useRegister";
 import Link from "next/link";
 import SmallLink from "./RegisterButton";
+import LoadingIcon from "../../_UI/LoadingIcon";
 
 const RegisterForm = () => {
   const [inputValues, setInputValues] = useState<ICreateUser>({
@@ -22,7 +23,8 @@ const RegisterForm = () => {
     password: "",
   });
 
-  const { handleRegisterUser } = useRegister();
+  const { handleRegisterUser, isRegistering, isRegistered, errorMessage } =
+    useRegister();
 
   const handleInputChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -96,7 +98,19 @@ const RegisterForm = () => {
           )}
         </div>
       </div>
-      <SubmitButton placeHolderValue="Register!" />
+      {errorMessage && (
+        <p className="text-sm	p-2 text-red-400">{errorMessage}</p>
+      )}
+
+      {isRegistering ? <LoadingIcon /> : null}
+
+      {!isRegistering &&
+        (isRegistered ? (
+          "Done!"
+        ) : (
+          <SubmitButton placeHolderValue="Register!" />
+        ))}
+
       <div className="flex w-full">
         <Link href="/auth/login">
           <SmallLink placeHolderValue="Login" />

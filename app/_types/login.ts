@@ -6,6 +6,7 @@ export interface IGetUser {
 }
 
 export interface ICreateUser {
+  message?: string;
   name: string | undefined;
   email: string;
   password: string;
@@ -23,4 +24,8 @@ export interface IInputField {
 
 export interface IButton {
   placeHolderValue: string;
+}
+
+export interface ErrorResponse {
+  message: string;
 }
