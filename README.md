@@ -4,7 +4,7 @@ Features yet to be implemented before release **25/37**
 
 ## Last update
 
-25/10/2023
+29/12/2023
 
 ### About
 
