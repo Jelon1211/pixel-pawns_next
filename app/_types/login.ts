@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 
 export interface IGetUser {
+  accessToken: string;
   id: string;
   email: string;
 }

@@ -1,7 +1,23 @@
 import axios, { AxiosResponse } from "axios";
-import { IGetUser, ICreateUser } from "../_types/login";
+import { IGetUser, ICreateUser, ILoginUser } from "../_types/login";
 
 export default class LoginService {
+  static async loginAuth(userData: ILoginUser): Promise<IGetUser> {
+    try {
+      const response: AxiosResponse<IGetUser> = await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/auth`,
+        userData
+      );
+      return response.data;
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error.message || "An unexpected error occurred.");
+      } else {
+        throw new Error("An unexpected error occurred.");
+      }
+    }
+  }
+
   static async getUser(id: string): Promise<IGetUser> {
     try {
       const response: AxiosResponse<IGetUser> = await axios.get(

@@ -6,6 +6,7 @@ import useLogin from "@/app/_hooks/useLogin";
 import Link from "next/link";
 import SmallLink from "../_register/RegisterButton";
 import { ILoginUser } from "@/app/_types/login";
+import Loading from "../../_UI/_animation/Loading";
 
 const LoginForm = () => {
   const [inputValues, setInputValues] = useState<ILoginUser>({
@@ -13,7 +14,7 @@ const LoginForm = () => {
     password: "",
   });
 
-  const { handleGetUser } = useLogin();
+  const { handleAuth, error, isLoading } = useLogin();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,7 +25,7 @@ const LoginForm = () => {
     <form
       className="Form work-request"
       style={{ width: "fit-content" }}
-      onSubmit={(e) => handleGetUser(e, inputValues)}
+      onSubmit={(e) => handleAuth(e, inputValues)}
     >
       <h2 className="Heading">Enter your credentials</h2>
       <div
@@ -47,10 +48,17 @@ const LoginForm = () => {
           />
         </div>
       </div>
-      <SubmitButton placeHolderValue="Login!" />
-      <Link href="/auth/register">
-        <SmallLink placeHolderValue="Register" />
-      </Link>
+      {isLoading ? (
+        <Loading text="Processing..." />
+      ) : (
+        <>
+          <SubmitButton placeHolderValue="Login!" />
+          <Link href="/auth/register">
+            <SmallLink placeHolderValue="Register" />
+          </Link>
+          {error && <div className="text-sm p-4 text-red-400">{error}</div>}
+        </>
+      )}
     </form>
   );
 };
