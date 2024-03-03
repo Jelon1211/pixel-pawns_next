@@ -7,6 +7,8 @@ import Link from "next/link";
 import SmallLink from "../_register/RegisterButton";
 import { ILoginUser } from "@/app/_types/login";
 import Loading from "../../_UI/_animation/Loading";
+import H2 from "../../_UI/_typography/H2";
+import axios from "axios";
 
 const LoginForm = () => {
   const [inputValues, setInputValues] = useState<ILoginUser>({
@@ -27,11 +29,8 @@ const LoginForm = () => {
       style={{ width: "fit-content" }}
       onSubmit={(e) => handleAuth(e, inputValues)}
     >
-      <h2 className="Heading">Enter your credentials</h2>
-      <div
-        className="work-request--information"
-        style={{ margin: "30px 0 30px 0" }}
-      >
+      <H2 text="Enter your credentials" className="Heading" />
+      <div className="work-request--information my-8">
         <div className="information-name">
           <InputField
             name="email"
@@ -49,7 +48,9 @@ const LoginForm = () => {
         </div>
       </div>
       {isLoading ? (
-        <Loading text="Processing..." />
+        <>
+          <Loading text="Loading..." />
+        </>
       ) : (
         <>
           <SubmitButton placeHolderValue="Login!" />

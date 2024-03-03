@@ -1,5 +1,5 @@
 import axios from "axios";
-import { prepareCharacters } from "../_lib/prepare";
+import { prepareCharacters } from "../_lib/prepareCharacters";
 
 export const getCharacters = async () => {
   const response = await axios("https://dog.ceo/api/breeds/image/random/15");

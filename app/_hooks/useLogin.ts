@@ -1,10 +1,12 @@
 import { FormEvent, useState } from "react";
 import LoginService from "../_services/loginService";
 import { ILoginUser } from "../_types/login";
+import { useRouter } from "next/navigation";
 
 const useLogin = () => {
   const [error, setError] = useState<null | string>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleAuth = async (
     e: FormEvent<HTMLFormElement>,
@@ -19,12 +21,13 @@ const useLogin = () => {
     setError(null);
     try {
       const bearerToken = await LoginService.loginAuth(userData);
-      document.cookie = `bearerToken=${bearerToken.accessToken}; max-age=1800; path=/`;
+      document.cookie = `bearerToken=${bearerToken.accessToken}; max-age=1800; path=/; Secure`;
     } catch (error) {
       setError(
         "Oops something wrong. I know what, but I won't tell you :) Try again!"
       );
     } finally {
+      router.push("/game/dashboard");
       setIsLoading(false);
     }
   };

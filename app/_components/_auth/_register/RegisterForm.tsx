@@ -9,7 +9,7 @@ import { RegisterSchema } from "@/app/_schemas/register";
 import useRegister from "@/app/_hooks/useRegister";
 import Link from "next/link";
 import SmallLink from "./RegisterButton";
-import LoadingIcon from "../../_UI/LoadingIcon";
+import Loading from "../../_UI/_animation/Loading";
 
 const RegisterForm = () => {
   const [inputValues, setInputValues] = useState<ICreateUser>({
@@ -102,7 +102,7 @@ const RegisterForm = () => {
         <p className="text-sm	p-2 text-red-400">{errorMessage}</p>
       )}
 
-      {isRegistering ? <LoadingIcon /> : null}
+      {isRegistering ? <Loading text="loading" /> : null}
 
       {!isRegistering &&
         (isRegistered ? (

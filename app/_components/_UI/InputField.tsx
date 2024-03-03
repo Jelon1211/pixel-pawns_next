@@ -1,4 +1,3 @@
-"use client";
 import { IInputField } from "@/app/_types/login";
 
 const InputField: React.FC<IInputField> = ({

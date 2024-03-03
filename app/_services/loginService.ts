@@ -6,7 +6,10 @@ export default class LoginService {
     try {
       const response: AxiosResponse<IGetUser> = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/auth`,
-        userData
+        userData,
+        {
+          withCredentials: true,
+        }
       );
       return response.data;
     } catch (error) {
