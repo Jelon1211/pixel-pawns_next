@@ -16,15 +16,22 @@ const RegisterForm = () => {
     name: "",
     email: "",
     password: "",
+    isActive: true,
   });
   const [errors, setErrors] = useState<ICreateUser>({
     name: "",
     email: "",
     password: "",
+    isActive: true,
   });
 
-  const { handleRegisterUser, isRegistering, isRegistered, errorMessage } =
-    useRegister();
+  const {
+    handleRegisterUser,
+    isRegistering,
+    isRegistered,
+    errorMessage,
+    registerMessage,
+  } = useRegister();
 
   const handleInputChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -99,11 +106,11 @@ const RegisterForm = () => {
         <p className="text-sm	p-2 text-red-400">{errorMessage}</p>
       )}
 
-      {isRegistering ? <Loading text="loading" /> : null}
+      {isRegistering ? <Loading text="Loading..." /> : null}
 
       {!isRegistering &&
         (isRegistered ? (
-          "Done!"
+          registerMessage
         ) : (
           <SubmitButton placeHolderValue="Register!" />
         ))}

@@ -1,11 +1,9 @@
 import { IBearer } from "../_types/middleware";
-import { refreshToken } from "./refreshToken";
 
 export async function isAuthenticated(bearer: IBearer) {
   if (!bearer) {
     return false;
   }
-
   try {
     const authResponse = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/users/auth`,
@@ -17,8 +15,11 @@ export async function isAuthenticated(bearer: IBearer) {
       }
     );
 
+    const data = await authResponse.json();
+    console.log(data);
+
     if (!authResponse.ok) {
-      return refreshToken();
+      return false;
     }
 
     return true;

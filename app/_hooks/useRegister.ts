@@ -6,6 +6,7 @@ import { ErrorResponse } from "../_types/login";
 
 const useRegister = () => {
   const [isRegistering, setIsRegistering] = useState<boolean>(false);
+  const [registerMessage, setRegisterMessage] = useState<string>("");
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -13,14 +14,15 @@ const useRegister = () => {
     setIsRegistering(true);
     try {
       const result = await LoginService.createUser(userData);
-      console.log(result);
-      
+
       if (result.message) {
+        setRegisterMessage(result.message);
         setIsRegistered(true);
         setErrorMessage("");
       }
+      setIsRegistering(false);
     } catch (error) {
-      const axiosError = error as AxiosError<ErrorResponse>; // Asercja typu dla AxiosError
+      const axiosError = error as AxiosError<ErrorResponse>;
 
       console.error(axiosError);
       setIsRegistered(false);
@@ -28,12 +30,16 @@ const useRegister = () => {
       const errorMessage =
         axiosError.response?.data?.message || "An error occurred";
       setErrorMessage(errorMessage);
-    } finally {
-      setIsRegistering(false);
     }
   };
 
-  return { handleRegisterUser, isRegistering, isRegistered, errorMessage };
+  return {
+    handleRegisterUser,
+    isRegistering,
+    isRegistered,
+    errorMessage,
+    registerMessage,
+  };
 };
 
 export default useRegister;

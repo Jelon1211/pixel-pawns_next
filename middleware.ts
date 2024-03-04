@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
 
   const response = await isAuthenticated(bearerToken);
   if (!response) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/auth/refresh", request.url));
   }
 
   return NextResponse.next();

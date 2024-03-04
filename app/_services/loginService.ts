@@ -21,10 +21,24 @@ export default class LoginService {
     }
   }
 
-  static async getUser(id: string): Promise<IGetUser> {
+  // static async getUser(id: string): Promise<IGetUser> {
+  //   try {
+  //     const response: AxiosResponse<IGetUser> = await axios.get(
+  //       `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/users/${id}`
+  //     );
+  //     return response.data;
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
+
+  static async createUser(
+    userData: Partial<ICreateUser>
+  ): Promise<ICreateUser> {
     try {
-      const response: AxiosResponse<IGetUser> = await axios.get(
-        `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/users/${id}`
+      const response: AxiosResponse<ICreateUser> = await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/users`,
+        userData
       );
       return response.data;
     } catch (error) {
@@ -32,21 +46,16 @@ export default class LoginService {
     }
   }
 
-  static async createUser(
-    userData: Partial<ICreateUser>
-  ): Promise<ICreateUser> {
-    const isActiveValue = process.env.mail_activation === "true";
-
-    const dataToSend = {
-      ...userData,
-      isActive: isActiveValue,
-    };
+  static async logOut(): Promise<Response> {
     try {
-      const response: AxiosResponse<ICreateUser> = await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/users`,
-        dataToSend
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/auth/logout`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
       );
-      return response.data;
+      return response;
     } catch (error) {
       throw error;
     }
