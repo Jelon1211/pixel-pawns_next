@@ -1,7 +1,5 @@
-"use client";
-
 const Page = () => {
-  console.log("proxy client");
+  return <></>;
 };
 
 export default Page;

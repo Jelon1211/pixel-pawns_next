@@ -62,10 +62,7 @@ const RegisterForm = () => {
       onSubmit={handleSubmit}
     >
       <h2 className="Heading">Enter your credentials</h2>
-      <div
-        className="work-request--information"
-        style={{ margin: "30px 0 30px 0" }}
-      >
+      <div className="work-request--information my-7">
         <div className="information-name mr-4">
           <InputField
             name="name"

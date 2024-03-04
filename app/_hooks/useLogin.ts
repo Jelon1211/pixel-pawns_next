@@ -22,12 +22,11 @@ const useLogin = () => {
     try {
       const bearerToken = await LoginService.loginAuth(userData);
       document.cookie = `bearerToken=${bearerToken.accessToken}; max-age=1800; path=/; Secure`;
+      router.push("/game/dashboard");
     } catch (error) {
       setError(
         "Oops something wrong. I know what, but I won't tell you :) Try again!"
       );
-    } finally {
-      router.push("/game/dashboard");
       setIsLoading(false);
     }
   };

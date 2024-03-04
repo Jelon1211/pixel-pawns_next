@@ -11,6 +11,7 @@ export interface ICreateUser {
   name: string | undefined;
   email: string;
   password: string;
+  isActive: boolean;
 }
 export interface ILoginUser {
   email: string;

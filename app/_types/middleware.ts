@@ -1,4 +1,4 @@
 export interface IBearer {
-  key: string;
-  value: string;
+  key?: string;
+  value?: string;
 }

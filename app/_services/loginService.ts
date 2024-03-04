@@ -35,10 +35,16 @@ export default class LoginService {
   static async createUser(
     userData: Partial<ICreateUser>
   ): Promise<ICreateUser> {
+    const isActiveValue = process.env.mail_activation === "true";
+
+    const dataToSend = {
+      ...userData,
+      isActive: isActiveValue,
+    };
     try {
       const response: AxiosResponse<ICreateUser> = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/users`,
-        userData
+        dataToSend
       );
       return response.data;
     } catch (error) {

@@ -3,13 +3,13 @@ import { NextRequest } from "next/server";
 import { isAuthenticated } from "./app/_lib/isAuthenticated";
 
 export async function middleware(request: NextRequest) {
-  const bearer = request.cookies.get("bearerToken");
+  const bearerToken = request.cookies.get("bearerToken");
 
-  if (!bearer) {
+  if (!bearerToken) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  const response = await isAuthenticated(bearer);
+  const response = await isAuthenticated(bearerToken);
   if (!response) {
     return NextResponse.redirect(new URL("/", request.url));
   }
