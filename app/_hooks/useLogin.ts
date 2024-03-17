@@ -36,7 +36,6 @@ const useLogin = () => {
     userData: ILoginUser
   ) => {
     e.preventDefault();
-    console.log(userData);
     try {
       const userData = await LoginService.getUser(userData);
       console.log(userData);

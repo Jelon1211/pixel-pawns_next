@@ -4,8 +4,9 @@ import { isAuthenticated } from "./app/_lib/isAuthenticated";
 
 export async function middleware(request: NextRequest) {
   const bearerToken = request.cookies.get("bearerToken");
+  const jwtToken = request.cookies.get("jwt");
 
-  if (!bearerToken) {
+  if (!bearerToken && !jwtToken) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 

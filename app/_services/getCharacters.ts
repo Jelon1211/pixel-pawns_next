@@ -1,12 +1,21 @@
 import axios from "axios";
-import { prepareCharacters } from "../_lib/prepareCharacters";
+import getCookie from "../_lib/getCookie";
 
 export const getCharacters = async () => {
-  const response = await axios("https://dog.ceo/api/breeds/image/random/15");
+  const bearer = getCookie("bearerToken");
 
-  if (!response.status) {
-    throw new Error("Failure to get your characters");
+  const response = await axios.get(
+    `${process.env.NEXT_PUBLIC_SERVER_ADRESS}/pawns`,
+    {
+      headers: {
+        Authorization: `Bearer ${bearer}`,
+      },
+    }
+  );
+
+  if (response.status !== 200) {
+    return false;
   }
 
-  return prepareCharacters(response.data);
+  return await response.data;
 };

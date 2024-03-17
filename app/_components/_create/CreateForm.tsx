@@ -7,6 +7,7 @@ import { IInputCreateValues } from "@/app/_types/game";
 import ProgressBar from "./ProgressBar";
 import { CreateCharacterSchema } from "@/app/_schemas/createCharacter";
 import { useRouter } from "next/navigation";
+import characterService from "@/app/_services/charactersService";
 
 const CreateForm = () => {
   const [inputValues, setInputValues] = useState<IInputCreateValues>({
@@ -16,7 +17,12 @@ const CreateForm = () => {
     attributes: "",
   });
   const [isCreating, setIsCreating] = useState<boolean>(false);
-  const [errors, setErrors] = useState({ name: "" });
+  const [errors, setErrors] = useState<IInputCreateValues>({
+    name: "",
+    race: "",
+    weapon: "",
+    attributes: "",
+  });
   const [progress, setProgress] = useState<number>(0);
 
   const router = useRouter();
@@ -29,12 +35,16 @@ const CreateForm = () => {
       ) as Yup.StringSchema;
       await fieldSchema.validate(value);
 
-      setErrors((prev) => ({ ...prev, [name]: "" }));
+      setErrors((prev: any) => ({ ...prev, [name]: "" }));
     } catch (error: any) {
       if (error instanceof Yup.ValidationError) {
-        setErrors((prev) => ({ ...prev, [name]: error.message }));
+        setErrors((prev: any) => ({ ...prev, [name]: error.message }));
       }
     }
+  };
+
+  const isFormValid = () => {
+    return Object.values(errors).every((error) => error === "");
   };
 
   const handleInputChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,16 +65,18 @@ const CreateForm = () => {
       }
     }
 
-    let progressInterval = setInterval(() => {
-      setProgress((prevProgress) => {
-        if (prevProgress >= 100) {
-          clearInterval(progressInterval);
-          //   router.push(`/game/created?name=${inputValues.name}`);
-          return 100;
-        }
-        return prevProgress + 10;
-      });
-    }, 100);
+    const wsDAW = await characterService.createCharacter(inputValues);
+
+    // let progressInterval = setInterval(() => {
+    //   setProgress((prevProgress) => {
+    //     if (prevProgress >= 100) {
+    //       clearInterval(progressInterval);
+    //       //   router.push(`/game/created?name=${inputValues.name}`);
+    //       return 100;
+    //     }
+    //     return prevProgress + 10;
+    //   });
+    // }, 100);
   };
 
   return (
@@ -98,6 +110,9 @@ const CreateForm = () => {
                 value={inputValues.race}
                 onChange={handleInputChange}
               />
+              {errors.race && (
+                <p className="text-sm p-2 text-red-400">{errors.race}</p>
+              )}
             </div>
             <div className="information-name w-full">
               <InputField
@@ -105,6 +120,9 @@ const CreateForm = () => {
                 value={inputValues.weapon}
                 onChange={handleInputChange}
               />
+              {errors.weapon && (
+                <p className="text-sm p-2 text-red-400">{errors.weapon}</p>
+              )}
             </div>
             <div className="information-name w-full">
               <InputField
@@ -112,9 +130,15 @@ const CreateForm = () => {
                 value={inputValues.attributes}
                 onChange={handleInputChange}
               />
+              {errors.attributes && (
+                <p className="text-sm p-2 text-red-400">{errors.attributes}</p>
+              )}
             </div>
           </div>
-          <SubmitButton placeHolderValue="Create!" />
+          <SubmitButton
+            placeHolderValue="Create!"
+            isDisabled={!isFormValid()}
+          />
         </form>
       )}
     </>

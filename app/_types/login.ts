@@ -30,6 +30,7 @@ export interface IInputField {
 
 export interface IButton {
   placeHolderValue: string;
+  isDisabled?: boolean;
 }
 
 export interface ErrorResponse {

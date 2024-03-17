@@ -16,7 +16,6 @@ export async function isAuthenticated(bearer: IBearer) {
     );
 
     const data = await authResponse.json();
-    console.log(data);
 
     if (!authResponse.ok) {
       return false;

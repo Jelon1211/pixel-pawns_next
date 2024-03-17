@@ -1,13 +1,11 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-
-import { CharacterTileProps } from "@/app/_types/game";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
-const characterVariants: Variants = {
+const characterVariants = {
   hidden: { scale: 0.8, rotate: -10, opacity: 0 },
-  visible: (i: number) => ({
+  visible: (i) => ({
     scale: 1,
     rotate: 0,
     opacity: 1,
@@ -17,10 +15,9 @@ const characterVariants: Variants = {
   }),
 };
 
-const CharacterTile = ({ thumbnail, name, id, index }: CharacterTileProps) => {
+const CharacterTile = ({ img, name, hp, atk, isAlive, id, index }: any) => {
   return (
     <motion.div
-      key={id}
       variants={characterVariants}
       initial="hidden"
       animate="visible"
@@ -28,7 +25,7 @@ const CharacterTile = ({ thumbnail, name, id, index }: CharacterTileProps) => {
       className="w-1/4 p-2 flex flex-col items-center justify-center"
     >
       <Image
-        src={thumbnail}
+        src={img || "/default-thumbnail.png"}
         alt={name}
         className="aspect-square object-cover rounded-md"
         width={256}

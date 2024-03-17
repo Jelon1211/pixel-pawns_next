@@ -1,5 +1,5 @@
 export interface CharacterTileProps {
-  id: number;
+  _id: string;
   index: number;
   thumbnail: string;
   name: string;
