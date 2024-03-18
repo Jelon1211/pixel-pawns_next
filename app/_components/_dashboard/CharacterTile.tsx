@@ -1,11 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 const characterVariants = {
   hidden: { scale: 0.8, rotate: -10, opacity: 0 },
-  visible: (i) => ({
+  visible: (i: number) => ({
     scale: 1,
     rotate: 0,
     opacity: 1,
@@ -22,7 +23,7 @@ const CharacterTile = ({ img, name, hp, atk, isAlive, id, index }: any) => {
       initial="hidden"
       animate="visible"
       custom={index}
-      className="w-1/4 p-2 flex flex-col items-center justify-center"
+      className="w-1/4 p-2 flex flex-col items-center justify-center cursor-pointer"
     >
       <Image
         src={img || "/default-thumbnail.png"}
