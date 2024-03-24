@@ -16,7 +16,16 @@ const characterVariants = {
   }),
 };
 
-const CharacterTile = ({ img, name, hp, atk, isAlive, id, index }: any) => {
+const CharacterTile = ({
+  img,
+  name,
+  hp,
+  atk,
+  isAlive,
+  id,
+  index,
+  onClick,
+}: any) => {
   return (
     <motion.div
       variants={characterVariants}
@@ -24,9 +33,10 @@ const CharacterTile = ({ img, name, hp, atk, isAlive, id, index }: any) => {
       animate="visible"
       custom={index}
       className="w-1/4 p-2 flex flex-col items-center justify-center cursor-pointer"
+      onClick={onClick}
     >
       <Image
-        src={img || "/default-thumbnail.png"}
+        src={img}
         alt={name}
         className="aspect-square object-cover rounded-md"
         width={256}

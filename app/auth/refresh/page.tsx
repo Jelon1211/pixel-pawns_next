@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/_components/_UI/_animation/Loading";
 
 const RefreshPage = () => {
   const router = useRouter();
@@ -31,7 +32,14 @@ const RefreshPage = () => {
     refreshAuth();
   }, [router]);
 
-  return null;
+  return (
+    <>
+      <div className="flex flex-col justify-center items-center">
+        <Loading text="Game loading..." />
+      </div>
+      ;
+    </>
+  );
 };
 
 export default RefreshPage;

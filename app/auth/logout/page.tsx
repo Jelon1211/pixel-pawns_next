@@ -24,6 +24,7 @@ const Page = () => {
               "=;expires=" + new Date().toUTCString() + ";path=/"
             );
         });
+        localStorage.removeItem("characters");
         router.push("/");
       } catch (err) {
         throw err;
