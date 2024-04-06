@@ -63,7 +63,7 @@ const CreateForm = () => {
         setProgress((prevProgress) => {
           const newProgress = Math.min(
             100,
-            prevProgress + Math.floor(Math.random() * 10 + 1)
+            prevProgress + Math.floor(Math.random() * 4 + 1)
           );
           if (newProgress >= 100) {
             clearInterval(progressInterval);

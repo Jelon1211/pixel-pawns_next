@@ -17,10 +17,10 @@ const Page = () => {
     name: "",
     description: "",
     isAlive: true,
-    attack: 0,
-    health: 0,
+    atk: 0,
+    hp: 0,
     type: "ground",
-    img: "",
+    img: "/assets/img/logo.png",
   });
   const [selectedCharacter, setSelectedCharacter] = useState<any>(null);
 
@@ -103,11 +103,11 @@ const Page = () => {
                     </li>
                     <li className="">
                       Attack:{" "}
-                      <span className="text-black">{character.attack}</span>
+                      <span className="text-black">{character.atk}</span>
                     </li>
                     <li className="">
                       Health:{" "}
-                      <span className="text-rose-500">{character.health}</span>
+                      <span className="text-rose-500">{character.hp}</span>
                     </li>
                     <li>
                       Type:{" "}
