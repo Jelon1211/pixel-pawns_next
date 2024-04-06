@@ -4,6 +4,7 @@ import { getCharacters } from "@/app/_services/getCharacters";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { downloadBase64File } from "@/app/_lib/downloadBase64File";
 
 const typeToClassMap: any = {
   ground: "text-stone-300",
@@ -44,6 +45,13 @@ const Page = () => {
   const closeModal = (event: any) => {
     if (event.target.id === "modalBackdrop") {
       setSelectedCharacter(null);
+    }
+  };
+
+  const haandleDownloadClick = () => {
+    if (selectedCharacter && selectedCharacter.img) {
+      const fileName = `${selectedCharacter.name.replace(/\s+/g, "_")}.png`;
+      downloadBase64File(selectedCharacter.img, fileName);
     }
   };
 
@@ -119,11 +127,19 @@ const Page = () => {
                 </li>
               </ul>
               <button
-                className="text-black absolute top-5 right-5 text-2xl"
+                className="text-black absolute top-5 right-5 text-2xl bg-white rounded-md"
                 onClick={() => setSelectedCharacter(null)}
               >
                 X
               </button>
+              <Image
+                src={"/assets/img/download.svg"}
+                alt="Download"
+                width={30}
+                height={30}
+                className="text-black absolute top-5 right-12 cursor-pointer bg-white rounded-md"
+                onClick={haandleDownloadClick}
+              />
             </div>
           </div>
         </div>
