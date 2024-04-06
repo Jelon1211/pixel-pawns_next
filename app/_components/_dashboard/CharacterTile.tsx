@@ -36,7 +36,7 @@ const CharacterTile = ({
       onClick={onClick}
     >
       <Image
-        src={img}
+        src={img ? img : ""}
         alt={name}
         className="aspect-square object-cover rounded-md"
         width={256}

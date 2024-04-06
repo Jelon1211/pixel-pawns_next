@@ -55,28 +55,31 @@ const CreateForm = () => {
 
   const handleCreateCharacter = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
       await CreateCharacterSchema.validate(inputValues);
       setIsCreating(true);
+
+      let progressInterval = setInterval(() => {
+        setProgress((prevProgress) => {
+          const newProgress = Math.min(
+            100,
+            prevProgress + Math.floor(Math.random() * 10 + 1)
+          );
+          if (newProgress >= 100) {
+            clearInterval(progressInterval);
+          }
+          return newProgress;
+        });
+      }, 1000);
+
+      const pawn = await characterService.createCharacter(inputValues);
+
+      clearInterval(progressInterval);
+      setProgress(100);
+      router.push(`/game/created?name=${pawn._id}`);
     } catch (error: any) {
-      if (error instanceof Yup.ValidationError) {
-        setErrors((prev) => ({ ...prev, [error.path!]: error.message }));
-      }
+      setErrors((prev) => ({ ...prev, [error.path!]: error.message }));
     }
-
-    const wsDAW = await characterService.createCharacter(inputValues);
-
-    // let progressInterval = setInterval(() => {
-    //   setProgress((prevProgress) => {
-    //     if (prevProgress >= 100) {
-    //       clearInterval(progressInterval);
-    //       //   router.push(`/game/created?name=${inputValues.name}`);
-    //       return 100;
-    //     }
-    //     return prevProgress + 10;
-    //   });
-    // }, 100);
   };
 
   return (
